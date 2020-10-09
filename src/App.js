@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "./App.css";
 import * as FilterConfig from "./components/FilterConfig";
 import TodoForm from "./components/TodoForm";
@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   addTodo = (todoObj) => {
-    console.log('append new todo', todoObj);
+    console.log("append new todo", todoObj);
     this.setState({
       todos: [todoObj, ...this.state.todos],
     });
@@ -64,12 +64,14 @@ class App extends Component {
   }
 
   getCompletedTodos() {
-    const filtered = this.state.todos.filter(todo => todo.completed === true);
+    const filtered = this.state.todos.filter((todo) => todo.completed === true);
     return filtered.sort((a, b) => a.id - b.id);
   }
 
   getActiveTodos = () => {
-    const activeTodos = this.state.todos.filter(todo => todo.completed === false);
+    const activeTodos = this.state.todos.filter(
+      (todo) => todo.completed === false
+    );
 
     return activeTodos.sort((a, b) => b.starred - a.starred);
   };
@@ -77,7 +79,7 @@ class App extends Component {
   getActiveStarred() {
     const activeTodos = this.getActiveTodos();
 
-    return activeTodos.filter(todo => todo.starred === 1);
+    return activeTodos.filter((todo) => todo.starred === 1);
   }
 
   counterActiveStarred = () => {
@@ -91,25 +93,25 @@ class App extends Component {
   render() {
     return (
       <div>
-        <a href="https://github.com/vikbert/react-MIT-todo"
+        {/* <a href=""
            target="_blank"
            rel="noopener noreferrer"
         >
           <img className="avatar"
-               src="https://github.githubassets.com/images/modules/site/logos/desktop-logo.png"
+               src=""
                alt="avatar"
           />
-        </a>
-        <section className="todoapp">
-          <header className="header">
-            <h1>{'M I T Todo'}</h1>
+        </a> */}
+        <section className='todoapp'>
+          <header className='header'>
+            <h1>{"M I T Todo"}</h1>
             {this.state.visibility !== FilterConfig.VISIBILITY_COMPLETED && (
-              <TodoForm addTodoHandler={this.addTodo}/>
+              <TodoForm addTodoHandler={this.addTodo} />
             )}
           </header>
 
-          <section className="main">
-            <ul className="todo-list">
+          <section className='main'>
+            <ul className='todo-list'>
               {this.getFilteredTodos().map((todo, index) => {
                 return (
                   <TodoItem
@@ -123,7 +125,7 @@ class App extends Component {
               })}
             </ul>
           </section>
-          <footer className="footer">
+          <footer className='footer'>
             <TodoControl
               visibility={this.state.visibility}
               counterCompleted={this.getCompletedTodos().length}
@@ -133,7 +135,7 @@ class App extends Component {
             />
           </footer>
         </section>
-        <span>{'CSS template powered by todomvc.com®'}</span>
+        <span>{"CSS template powered by todomvc.com®"}</span>
       </div>
     );
   }
